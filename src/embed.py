@@ -1,29 +1,17 @@
-from src import checkDay
+from src.event import Today, Image, Footer
+from src.randomPhrases import phrase
 
-def embeded(image):
 
-    message = {
-        "content": "<@&832774619344666634>", # <@&832774619344666634>
-        "allowed_mentions": {
-            "parse": ["roles", "users"],
-            "users": []
-        }
-    }
+def Embed():
+    # Embed properties
+    title = f"Feliz {Today()}"
+    text = "De parte de tu waifu gamer favorita"
+    color = "14272194"
+    footer = {"text": text, "icon_url": Footer()}
 
-    message["embeds"] = [
-        {
-            "title": "Feliz {ftoday}".format(ftoday=checkDay.today()),
-            "color": "14272194",
-            "image":
-            {
-                "url": image
-            },
-            "footer":
-            {
-                "text": "De parte de tu waifu gamer favorita",
-                "icon_url": "https://cdn.discordapp.com/attachments/778122416618209293/832719192334663730/geimboi.gif"
-            }
-        }
-    ]
+    # Build the actual payload with the embed
+    message = dict()
+    message["content"] = f"<@&832774619344666634> {phrase()}"
+    message["embeds"] = [{"title": title, "color": color, "image": {"url": Image()}, "footer": footer}]
 
     return message
