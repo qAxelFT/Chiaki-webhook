@@ -67,7 +67,7 @@ while True:
                         f"Unkown error. Post request return code: {response.status_code}",
                         f"Response body: {response.json()}",
                         f"{Yellow}NOTE: Please consider adding a handling function to this error code if possible{Off}")
-    exit(0)
+
     """
         Note: Consider future optimization of this Error Handling.
         This one is kind of a temporary solution to get this out already.
