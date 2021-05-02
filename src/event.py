@@ -1,6 +1,6 @@
 import datetime
 import json
-import os
+import sys
 
 
 # Enum for the days of the week
@@ -38,10 +38,10 @@ def Tomorrow():
 
 
 def Image():
-    with open(f"{os.getcwd()}/assets/images.json", "r") as file:
+    with open(f"{sys.path[0]}/assets/images.json", "r") as file:
         return json.load(file)[Today()]
 
 
 def Footer():
-    with open(f"{os.getcwd()}/assets/images.json", "r") as file:
+    with open(f"{sys.path[0]}/assets/images.json", "r") as file:
         return json.load(file)["Footer"]
