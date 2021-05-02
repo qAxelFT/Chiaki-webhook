@@ -9,7 +9,7 @@ import requests
 import binascii
 import base64
 import time
-import os
+import sys
 
 var_name = "CHIAKI_BASE64_TOKEN"  # The name of the environment variable containing the token
 url = None  # The base64 encrypted webhook link to make the request to
@@ -42,7 +42,6 @@ while True:
 
     payload = embed.Embed()
 
-    print("Vibing")
     time.sleep(delta.seconds)       # And basically vibe til' then
 
     response = requests.post(url, json=payload)   # Make our request and store response for error handling
@@ -52,23 +51,23 @@ while True:
     if not response.ok:
         if response.status_code == 401:
             console.out(f"{Red}[ERROR]{Off} Unauthorized client! Check logs for details...")
-            console.log(f"{os.getcwd()}/assets/logs/error.log", f"Unauthorized due to invalid webhook token. "
+            console.log(f"{sys.path[0]}/assets/logs/error.log", f"Unauthorized due to invalid webhook token. "
                         "Post request return code: 401 Unauthorized.",
                         f"Response body: {response.json()}")
 
         elif response.status_code == 404:
             console.out(f"{Red}[ERROR]{Off} Webhook was not found! Check logs for details...")
-            console.log(f"{os.getcwd()}/assets/logs/error.log",
+            console.log(f"{sys.path[0]}/assets/logs/error.log",
                         f"Unknown webhook. Post request return code: 404 Not Found.",
                         f"Response body: {response.json()}")
 
         else:
             console.out(f"{Red}[ERROR]{Off} An unkown error has occured! Check logs for details...")
-            console.log(f"{os.getcwd()}/assets/logs/error.log",
+            console.log(f"{sys.path[0]}/assets/logs/error.log",
                         f"Unkown error. Post request return code: {response.status_code}",
                         f"Response body: {response.json()}",
                         f"{Yellow}NOTE: Please consider adding a handling function to this error code if possible{Off}")
-    exit(0)
+
     """
         Note: Consider future optimization of this Error Handling.
         This one is kind of a temporary solution to get this out already.
