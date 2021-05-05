@@ -15,6 +15,17 @@ weekday = (
 )
 
 
+weekday_en = (
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+)
+
+
 # The time at which Chiaki acts each day of the week
 # It contains 7 items for each of the 7 days of the week
 # Each item contains 2 items: (hour, minute)
